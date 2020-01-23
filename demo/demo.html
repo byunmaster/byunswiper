@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>byun-swiper demo</title>
+  <style>
+    .item {
+      height: 200px;
+      background-color: gray;
+      box-shadow: 0 0 0 1px #000 inset;
+    }
+
+    button.btn {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="target">
+    <div class="container">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">7</div>
+      <div class="item">8</div>
+      <div class="item">9</div>
+      <div class="item">10</div>
+    </div>
+  </div>
+  <button type="button" class="btn prev" style="float: left;">Previous</button>
+  <button type="button" class="btn next" style="float: right;">Next</button>
+
+  <script src="../dist/byun.swiper.min.js"></script>
+  <script>
+    var swiper = byunSwiper({
+      target: document.querySelector('.target'),
+      multiple: 4,
+      loop: true
+    });
+    document.querySelector('.prev').addEventListener('click', swiper.prev);
+    document.querySelector('.next').addEventListener('click', swiper.next);
+  </script>
+</body>
+
+</html>

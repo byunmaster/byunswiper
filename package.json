@@ -1,0 +1,12 @@
+{
+  "license": "UNLICENSED",
+  "name": "byun-swiper",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack src/byun.swiper.js -o dist/byun.swiper.min.js --mode=production"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  }
+}

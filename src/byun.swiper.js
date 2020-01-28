@@ -17,7 +17,6 @@ window.byunSwiper = function(_options) {
   var $container = $target.firstElementChild;
   var $slides = $container.children;
   var currentPage = 1;
-  var isMoving = false;
   var totalPage = Math.ceil($slides.length / options.multiple);
   var slideWidth = 1;
   var itemWidth = 0;
@@ -66,7 +65,6 @@ window.byunSwiper = function(_options) {
         goPage(totalPage);
       }
     }
-    isMoving = false;
   });
 
   var timestamp = 0;
@@ -130,7 +128,6 @@ window.byunSwiper = function(_options) {
     $container.style.transform = 'translateX(' + pagesX[page] + 'px)';
   }
   function movePage(page) {
-    isMoving = true;
     currentPage = page;
     $container.style.transitionDuration = options.speed + 'ms';
     $container.style.transform = 'translateX(' + pagesX[page] + 'px)';
@@ -140,13 +137,13 @@ window.byunSwiper = function(_options) {
     };
   }
   function prev() {
-    if (isMoving || !canPrev()) {
+    if (!canPrev()) {
       return movePage(currentPage);
     }
     return movePage(--currentPage);
   }
   function next() {
-    if (isMoving || !canNext()) {
+    if (!canNext()) {
       return movePage(currentPage);
     }
     return movePage(++currentPage);

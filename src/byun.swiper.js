@@ -1,3 +1,8 @@
+/**
+ * Byun Swiper 1.0.1
+ * Released under the MIT License
+ * https://github.com/byunmaster/byunswiper
+ */
 window.byunSwiper = function(_options) {
   // option setting
   var options = {
@@ -65,6 +70,7 @@ window.byunSwiper = function(_options) {
         goPage(totalPage);
       }
     }
+    options.onEnd && options.onEnd(swiper);
   });
 
   var timestamp = 0;
@@ -103,7 +109,6 @@ window.byunSwiper = function(_options) {
     pagesX = generatePagesX();
   }
   function resize(e) {
-    e.preventDefault();
     draw();
     if (options.loop) {
       goPage(currentPage);
@@ -137,16 +142,10 @@ window.byunSwiper = function(_options) {
     };
   }
   function prev() {
-    if (!canPrev()) {
-      return movePage(currentPage);
-    }
-    return movePage(--currentPage);
+    return movePage(canPrev() ? --currentPage : currentPage);
   }
   function next() {
-    if (!canNext()) {
-      return movePage(currentPage);
-    }
-    return movePage(++currentPage);
+    return movePage(canNext() ? ++currentPage : currentPage);
   }
   function canPrev() {
     return options.loop || currentPage > 1;
@@ -155,8 +154,16 @@ window.byunSwiper = function(_options) {
     return options.loop || currentPage < totalPage;
   }
 
-  return {
+  var swiper = {
     prev: prev,
-    next: next
+    next: next,
+    canPrev: canPrev,
+    canNext: canNext,
+    loaded: function(callback) {
+      callback(this);
+      return this;
+    }
   };
+
+  return swiper;
 };

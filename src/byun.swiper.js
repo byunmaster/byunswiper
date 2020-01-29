@@ -29,7 +29,6 @@ window.byunSwiper = function(_options) {
 
   // init
   $target.style.overflow = 'hidden';
-  $container.style.display = 'inline-flex';
 
   var fragment = document.createDocumentFragment();
   for (var i = $slides.length, len = totalPage * options.multiple; i < len; i++) {
@@ -37,10 +36,13 @@ window.byunSwiper = function(_options) {
   }
   $container.appendChild(fragment);
 
+  var slideFragment = document.createDocumentFragment();
+  slideFragment.appendChild($container);
+  $container.style.display = 'inline-flex';
   for (var i = 0, len = $slides.length; i < len; i++) {
-    $slides[i].setAttribute('data-idx', i);
     $slides[i].style.textAlign = 'center';
   }
+  $target.appendChild($container);
 
   if (options.loop) {
     var prevFragment = document.createDocumentFragment();
@@ -108,7 +110,7 @@ window.byunSwiper = function(_options) {
     }
     pagesX = generatePagesX();
   }
-  function resize(e) {
+  function resize() {
     draw();
     if (options.loop) {
       goPage(currentPage);

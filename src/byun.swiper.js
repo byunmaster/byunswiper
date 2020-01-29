@@ -143,6 +143,9 @@ window.byunSwiper = function(_options) {
       canNext: canNext
     };
   }
+  function current() {
+    return currentPage;
+  }
   function prev() {
     return movePage(canPrev() ? --currentPage : currentPage);
   }
@@ -157,6 +160,7 @@ window.byunSwiper = function(_options) {
   }
 
   var swiper = {
+    current: current,
     prev: prev,
     next: next,
     canPrev: canPrev,

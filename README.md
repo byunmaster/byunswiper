@@ -40,13 +40,14 @@ var swiper = byunSwiper({
 
 ## methods
 
-| name             | description                        |
-| ---------------- | ---------------------------------- |
-| prev()           | swipe to previous slide            |
-| next()           | swipe to next slide                |
-| canPext()        | is avaiable swipe to previous      |
-| canNext()        | is avaiable swipe to next          |
-| loaded(callback) | callback of initialize (not async) |
+| name             | description                            |
+| ---------------- | -------------------------------------- |
+| current()        | current index (first slide index is 1) |
+| prev()           | swipe to previous slide                |
+| next()           | swipe to next slide                    |
+| canPext()        | is avaiable swipe to previous          |
+| canNext()        | is avaiable swipe to next              |
+| loaded(callback) | callback of initialize (not async)     |
 
 ## support
 

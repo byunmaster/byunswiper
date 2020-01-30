@@ -30,13 +30,14 @@ var swiper = byunSwiper({
 
 ## options
 
-| parameter | required |    type     |  default  | description                |
-| --------- | :------: | :---------: | :-------: | -------------------------- |
-| target    |    O     | HTMLElement |   null    | HTMLElement for swiper     |
-| multiple  |    X     |   number    |     1     | slide count per page       |
-| loop      |    X     |   boolean   |   false   | loop mode                  |
-| speed     |    X     |   number    |    300    | transition duration (ms)   |
-| onEnd     |    X     |  function   | undefined | callback of transition end |
+| parameter | required |    type     |  default  | description                  |
+| --------- | :------: | :---------: | :-------: | ---------------------------- |
+| target    |    O     | HTMLElement |   null    | HTMLElement for swiper       |
+| multiple  |    X     |   number    |     1     | slide count per page         |
+| loop      |    X     |   boolean   |   false   | loop mode                    |
+| speed     |    X     |   number    |    300    | transition duration (ms)     |
+| onStart   |    X     |  function   | undefined | callback of transition start |
+| onEnd     |    X     |  function   | undefined | callback of transition end   |
 
 ## methods
 

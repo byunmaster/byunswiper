@@ -29,20 +29,13 @@ window.byunSwiper = function(_options) {
 
   // init
   $target.style.overflow = 'hidden';
+  $container.style.display = 'inline-flex';
 
   var fragment = document.createDocumentFragment();
   for (var i = $slides.length, len = totalPage * options.multiple; i < len; i++) {
     fragment.appendChild(document.createElement('div'));
   }
   $container.appendChild(fragment);
-
-  var slideFragment = document.createDocumentFragment();
-  slideFragment.appendChild($container);
-  $container.style.display = 'inline-flex';
-  for (var i = 0, len = $slides.length; i < len; i++) {
-    $slides[i].style.textAlign = 'center';
-  }
-  $target.appendChild($container);
 
   if (options.loop) {
     var prevFragment = document.createDocumentFragment();
@@ -105,9 +98,12 @@ window.byunSwiper = function(_options) {
   function draw() {
     slideWidth = $target.offsetWidth;
     itemWidth = slideWidth / options.multiple;
+    var slideFragment = document.createDocumentFragment();
+    slideFragment.appendChild($container);
     for (var i = 0, len = $slides.length; i < len; i++) {
       $slides[i].style.width = itemWidth + 'px';
     }
+    $target.appendChild($container);
     pagesX = generatePagesX();
   }
   function resize() {
@@ -135,22 +131,24 @@ window.byunSwiper = function(_options) {
     $container.style.transform = 'translateX(' + pagesX[page] + 'px)';
   }
   function movePage(page) {
+    options.onStart && options.onStart(swiper);
     currentPage = page;
     $container.style.transitionDuration = options.speed + 'ms';
     $container.style.transform = 'translateX(' + pagesX[page] + 'px)';
-    return {
-      canPrev: canPrev,
-      canNext: canNext
-    };
   }
   function current() {
-    return currentPage;
+    if (currentPage > 0 && currentPage <= totalPage) {
+      return currentPage;
+    } else if (currentPage === 0) {
+      return totalPage;
+    }
+    return 1;
   }
   function prev() {
-    return movePage(canPrev() ? --currentPage : currentPage);
+    movePage(canPrev() ? --currentPage : currentPage);
   }
   function next() {
-    return movePage(canNext() ? ++currentPage : currentPage);
+    movePage(canNext() ? ++currentPage : currentPage);
   }
   function canPrev() {
     return options.loop || currentPage > 1;

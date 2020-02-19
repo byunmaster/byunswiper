@@ -52,4 +52,4 @@ var swiper = byunSwiper({
 
 ## support
 
-except IE
+All. However, if your browser doesn't support transitions, you won't be able to use animation.

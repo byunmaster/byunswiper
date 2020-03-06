@@ -74,9 +74,8 @@
     // event binding
     onDOMContentLoaded(function() {
       draw();
-      if (options.loop) {
-        goPage(currentPage);
-      }
+      options.loop && goPage(currentPage);
+      options.callback && options.callback(swiper);
     });
     window.onresize = resize;
 
@@ -124,9 +123,7 @@
       }
       slideFragment.firstChild.style.width = slides.length * itemWidth + 'px';
       $target.appendChild(slideFragment);
-      setTimeout(function() {
-        $target.style.height = $container.offsetHeight + 'px';
-      }, 100);
+      $target.style.height = $container.offsetHeight + 'px';
       pagesX = generatePagesX();
     }
     function resize() {
@@ -154,8 +151,8 @@
       swipe(pagesX[page]);
     }
     function movePage(page) {
-      options.onStart && options.onStart(swiper);
       currentPage = page;
+      options.onStart && options.onStart(swiper);
       transitionDuration(options.speed);
       swipe(pagesX[page]);
     }
@@ -191,7 +188,7 @@
     function current() {
       if (currentPage > 0 && currentPage <= totalPage) {
         return currentPage;
-      } else if (currentPage === 0) {
+      } else if (currentPage <= 0) {
         return totalPage;
       }
       return 1;
@@ -216,7 +213,7 @@
       canPrev: canPrev,
       canNext: canNext,
       loaded: function(callback) {
-        callback(this);
+        options.callback = callback;
         return this;
       }
     };
